@@ -30,3 +30,31 @@ const allDomainEmails = file.match(allDomainRegex)
 console.log(`Regex approach count all emails: ${allDomainEmails.length}`)
 console.log(allDomainEmails)
 
+//dictionary of domains - 15 different domains
+let emailDictionary = {}
+for (const domain of allDomainEmails) {
+    if (allDomainEmails[domain]) {
+        emailDictionary[domain] += 1;
+    } else {
+        emailDictionary[domain] = 1
+    }
+}
+console.log(emailDictionary);
+console.log(Object.keys(emailDictionary).length);
+
+//count how many emails per domain  
+for (const domain of allDomainEmails) {
+    if (emailDictionary[domain]) {
+        emailDictionary[domain]++
+    }
+}
+console.log(emailDictionary)
+
+//most and least popular domains
+const sortedDictionary = Object.entries(emailDictionary).sort((a, b) => a[1] - b[1]);
+console.log(sortedDictionary)
+const leastPopularDomain = sortedDictionary.shift()[0]
+console.log(leastPopularDomain)
+const mostPopularDomain = sortedDictionary.pop()[0]
+console.log(mostPopularDomain)
+
